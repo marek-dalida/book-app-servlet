@@ -7,8 +7,8 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-@WebServlet("/login")
-public class Login extends HttpServlet {
+@WebServlet(name = "LoginServlet", urlPatterns = "/LoginServlet")
+public class LoginServlet extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String username = request.getParameter("username");

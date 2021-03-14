@@ -16,10 +16,10 @@
     <h1 class="h1 text-center mt-5">
       Biblioteka
     </h1>
-    <form name="loginForm" method="post" action="login">
+    <form name="loginForm" method="post" action="LoginServlet">
       Username: <input type="text" name="username"/> <br/>
       Password: <input type="password" name="password"/> <br/>
-      <input type="submit" value="Login" />
+      <input type="submit" value="Zaloguj" />
     </form>
   </div>
   </body>
