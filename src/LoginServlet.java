@@ -1,3 +1,6 @@
+import models.User;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -11,19 +14,22 @@ import java.io.PrintWriter;
 public class LoginServlet extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        User user = new User();
+
         String username = request.getParameter("username");
         String password = request.getParameter("password");
 
-        System.out.println("username: " + username);
-        System.out.println("password: " + password);
+        System.out.println(username);
+        System.out.println(password);
+
+        RequestDispatcher requestDispatcher;
 
         if(username.equals("admin") && password.equals("admin")){
-            HttpSession session = request.getSession();
-            session.setAttribute("username", username);
-            response.sendRedirect("welcome.jsp");
-        } else {
-            response.sendRedirect("index.jsp");
+            requestDispatcher = request.getRequestDispatcher("AdminLoginServlet");
+        } else  {
+            requestDispatcher = request.getRequestDispatcher("UserLoginServlet");
         }
+        requestDispatcher.forward(request, response);
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
