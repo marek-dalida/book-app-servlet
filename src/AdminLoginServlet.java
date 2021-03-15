@@ -1,8 +1,13 @@
+import models.Role;
+import models.User;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
 
@@ -11,9 +16,24 @@ public class AdminLoginServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();
+        HttpSession session = request.getSession();
 
-        String n=request.getParameter("username");
-        out.print("Admin login servlet Welcome "+n);
+        String username = request.getParameter("username");
+        String password = request.getParameter("password");
+
+        User user;
+
+        RequestDispatcher requestDispatcher;
+
+        if (username.equals("admin") && password.equals("admin")){
+            user = new User(username, password, Role.ADMIN);
+            session.setAttribute("user", user);
+            requestDispatcher = request.getRequestDispatcher("AdminServlet");
+        } else {
+            requestDispatcher = request.getRequestDispatcher("loginFailure.jsp");
+        }
+        requestDispatcher.forward(request, response);
+
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

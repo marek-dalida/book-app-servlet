@@ -24,7 +24,7 @@ public class LoginServlet extends HttpServlet {
 
         RequestDispatcher requestDispatcher;
 
-        if(username.equals("admin") && password.equals("admin")){
+        if(username.equals("admin")){
             requestDispatcher = request.getRequestDispatcher("AdminLoginServlet");
         } else  {
             requestDispatcher = request.getRequestDispatcher("UserLoginServlet");
