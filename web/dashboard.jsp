@@ -1,4 +1,4 @@
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: marek
@@ -9,7 +9,6 @@
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <jsp:useBean id="user" class="models.User" scope="session"/>
-<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
 <html>
 <head>
     <title>Dashboard</title>
@@ -32,8 +31,6 @@
                 <td>Author : <c:out value="${book.author}"/></td>
             </tr>
         </c:forEach>
-
-
     </table>
 </div>
 </body>

@@ -10,17 +10,28 @@
 <head>
     <title>Strona logowania</title>
 </head>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<link rel="stylesheet" href="style.css" type="text/css"/>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 <body>
-<div>
-    <h1 class="h1 text-center mt-5">
-        Biblioteka
-    </h1>
-    <form name="loginForm" method="post" action="LoginServlet">
-        Username: <input type="text" name="username"/> <br/>
-        Password: <input type="password" name="password"/> <br/>
-        <input type="submit" value="Zaloguj" />
-    </form>
+<div class="wrapper">
+    <div class="loginPageStyle">
+            <h1 class="text-center">
+                Biblioteka
+            </h1>
+        <form name="loginForm" method="post" action="LoginServlet">
+            <div class="form-group">
+                <label for="username">Nazwa użytkownika</label>
+                <input type="text" class="form-control" name="username" id="username" placeholder="Podaj nazwe uzytkownika">
+            </div>
+            <div class="form-group">
+                <label for="password">Haslo</label>
+                <input type="password" class="form-control" id="password" name="password" placeholder="Haslo">
+            </div>
+            <button type="submit" class="btn btn-secondary">Zaloguj</button>
+        </form>
+    </div>
 </div>
+
 </body>
 </html>
