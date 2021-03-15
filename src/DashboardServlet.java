@@ -1,5 +1,6 @@
 import models.Book;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -20,6 +21,11 @@ public class DashboardServlet extends HttpServlet {
         ArrayList<Book> books = (ArrayList<Book>) context.getAttribute("books");
         System.out.println(books.toString());
         HttpSession session = request.getSession();
+
+
+        RequestDispatcher requestDispatcher;
+        requestDispatcher = request.getRequestDispatcher("dashboard.jsp");
+        requestDispatcher.forward(request, response);
 
         out.print("Dashboard servlet");
 
