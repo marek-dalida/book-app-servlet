@@ -10,5 +10,10 @@
         <servlet-name>AdminLoginServlet</servlet-name>
         <url-pattern>/AdminLoginServlet</url-pattern> <!-- You can change this-->
     </servlet-mapping>
+    <listener>
+        <listener-class>
+            LibraryContextServletListener
+        </listener-class>
+    </listener>
 </web-app>
 
