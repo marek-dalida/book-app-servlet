@@ -24,13 +24,11 @@ public class AdminLoginServlet extends HttpServlet {
 
         User user;
 
-        RequestDispatcher requestDispatcher;
 
         if (username.equals("admin") && password.equals("admin")){
             user = new User(username, password, Role.ADMIN);
             session.setAttribute("user", user);
-            requestDispatcher = request.getRequestDispatcher("AdminServlet");
-            requestDispatcher.forward(request, response);
+            response.sendRedirect("AdminServlet");
         } else {
             response.sendRedirect("loginFailure.html");
         }

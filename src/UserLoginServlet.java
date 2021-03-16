@@ -38,14 +38,13 @@ public class UserLoginServlet extends HttpServlet {
 
         User user;
 
-        RequestDispatcher requestDispatcher;
-
         if(users.containsKey(username)){
             if(users.get(username).equals(password)){
                 user = new User(username, password, Role.USER);
                 session.setAttribute("user", user);
-                requestDispatcher = request.getRequestDispatcher("DashboardServlet");
-                requestDispatcher.forward(request, response);
+                response.sendRedirect("DashboardServlet");
+                //requestDispatcher = request.getRequestDispatcher("DashboardServlet");
+                //requestDispatcher.forward(request, response);
             } else {
                 response.sendRedirect("loginFailure.html");
             }
