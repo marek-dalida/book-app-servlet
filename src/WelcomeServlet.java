@@ -39,7 +39,7 @@ public class WelcomeServlet extends HttpServlet {
                 requestDispatcher = request.getRequestDispatcher("DashboardServlet");
             }
         } else {
-            requestDispatcher = request.getRequestDispatcher("login.jsp");
+            requestDispatcher = request.getRequestDispatcher("login.html");
         }
         requestDispatcher.forward(request, response);
     }

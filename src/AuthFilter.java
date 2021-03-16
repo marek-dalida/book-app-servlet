@@ -26,7 +26,7 @@ public class AuthFilter implements Filter {
 
         if( session == null && !(uri.endsWith("/zpt_1_war_exploded/"))){
             this.context.log("Unauthorized access request");
-            response.sendRedirect("login.jsp");
+            response.sendRedirect("login.html");
         }else{
             // pass the request along the filter chain
             chain.doFilter(request, response);
