@@ -34,6 +34,13 @@ public class DashboardServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        response.setContentType("text/html");
+        response.setCharacterEncoding("utf-8");
+        PrintWriter out = response.getWriter();
+        ServletContext context = getServletContext();
 
+        out.print("Dashboard");
+
+        out.close();
     }
 }

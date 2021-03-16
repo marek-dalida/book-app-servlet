@@ -45,13 +45,14 @@ public class UserLoginServlet extends HttpServlet {
                 user = new User(username, password, Role.USER);
                 session.setAttribute("user", user);
                 requestDispatcher = request.getRequestDispatcher("DashboardServlet");
+                requestDispatcher.forward(request, response);
             } else {
-                requestDispatcher = request.getRequestDispatcher("loginFailure.jsp");
+                response.sendRedirect("loginFailure.html");
             }
         } else {
-            requestDispatcher = request.getRequestDispatcher("loginFailure.jsp");
+           response.sendRedirect("loginFailure.html");
         }
-        requestDispatcher.forward(request, response);
+
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

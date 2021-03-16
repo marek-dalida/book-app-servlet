@@ -30,10 +30,11 @@ public class AdminLoginServlet extends HttpServlet {
             user = new User(username, password, Role.ADMIN);
             session.setAttribute("user", user);
             requestDispatcher = request.getRequestDispatcher("AdminServlet");
+            requestDispatcher.forward(request, response);
         } else {
-            requestDispatcher = request.getRequestDispatcher("loginFailure.jsp");
+            response.sendRedirect("loginFailure.html");
         }
-        requestDispatcher.forward(request, response);
+
 
     }
 

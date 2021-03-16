@@ -22,23 +22,25 @@ public class WelcomeServlet extends HttpServlet {
         response.setContentType("text/html");
         response.setCharacterEncoding("utf-8");
 
+        request.setCharacterEncoding("utf-8");
+
         HttpSession session = request.getSession();
         ServletContext context = getServletContext();
 
+        User user = (User) session.getAttribute("user");
+
+        RequestDispatcher requestDispatcher;
 
         //Sprawdzenie czy użytkownik istnieje
-        if(request.getParameter("user") == null){
-            RequestDispatcher requestDispatcher = request.getRequestDispatcher("login.jsp");
-            requestDispatcher.forward(request, response);
-        } else {
-            User user = (User) session.getAttribute("user");
-            RequestDispatcher requestDispatcher;
-            if(user.getRole() == Role.ADMIN) {
+        if (user != null) {
+            if (user.getRole() == Role.ADMIN) {
                 requestDispatcher = request.getRequestDispatcher("AdminServlet");
             } else {
                 requestDispatcher = request.getRequestDispatcher("DashboardServlet");
             }
-            requestDispatcher.forward(request, response);
+        } else {
+            requestDispatcher = request.getRequestDispatcher("login.jsp");
         }
+        requestDispatcher.forward(request, response);
     }
 }
