@@ -20,8 +20,11 @@
     <h1 class="h1 text-center"> Panel użytkownika </h1>
     <br/>
     <br/>
-    Jestes zalogowany jako: ${user.login}
-
+    <div class="text-center h4">
+        Jestes zalogowany jako: <b>${user.login}</b>
+        <a href="LogoutServlet">wyloguj</a>
+    </div>
+    <input >
     <table class="table table-striped">
         <thead>
         <tr>

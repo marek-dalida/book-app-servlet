@@ -34,7 +34,7 @@ public class AuthFilter implements Filter {
         User user = (User) context.getAttribute("user");
 
         if( user == null && !(uri.endsWith("/zpt_1_war_exploded/")) && !(uri.endsWith("/LoginServlet"))
-                && !(uri.endsWith("/login.html")) && !(uri.endsWith("/style.css"))){
+                && !(uri.endsWith("/login.html")) && !(uri.endsWith("/style.css")) && !(uri.endsWith("/loginFailure.html"))){
             this.context.log("Unauthorized access request");
             response.sendRedirect("login.html");
         } else if ( user != null && user.getRole().compareTo(Role.ADMIN) == 0 && uri.endsWith("/DashboardServlet")){
