@@ -2,6 +2,7 @@ import models.Role;
 import models.User;
 
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -18,6 +19,7 @@ public class AdminLoginServlet extends HttpServlet {
         response.setCharacterEncoding("utf-8");
         PrintWriter out = response.getWriter();
         HttpSession session = request.getSession();
+        ServletContext context = getServletContext();
 
         String username = request.getParameter("username");
         String password = request.getParameter("password");
@@ -27,7 +29,7 @@ public class AdminLoginServlet extends HttpServlet {
 
         if (username.equals("admin") && password.equals("admin")){
             user = new User(username, password, Role.ADMIN);
-            session.setAttribute("user", user);
+            context.setAttribute("user", user);
             response.sendRedirect("AdminServlet");
         } else {
             response.sendRedirect("loginFailure.html");

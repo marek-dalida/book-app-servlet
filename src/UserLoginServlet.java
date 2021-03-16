@@ -2,6 +2,7 @@ import models.Role;
 import models.User;
 
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -32,6 +33,7 @@ public class UserLoginServlet extends HttpServlet {
         response.setCharacterEncoding("utf-8");
         PrintWriter out = response.getWriter();
         HttpSession session = request.getSession();
+        ServletContext context = getServletContext();
 
         String username = request.getParameter("username");
         String password = request.getParameter("password");
@@ -41,7 +43,7 @@ public class UserLoginServlet extends HttpServlet {
         if(users.containsKey(username)){
             if(users.get(username).equals(password)){
                 user = new User(username, password, Role.USER);
-                session.setAttribute("user", user);
+                context.setAttribute("user", user);
                 response.sendRedirect("DashboardServlet");
                 //requestDispatcher = request.getRequestDispatcher("DashboardServlet");
                 //requestDispatcher.forward(request, response);

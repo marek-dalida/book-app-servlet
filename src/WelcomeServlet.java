@@ -27,7 +27,7 @@ public class WelcomeServlet extends HttpServlet {
         HttpSession session = request.getSession();
         ServletContext context = getServletContext();
 
-        User user = (User) session.getAttribute("user");
+        User user = (User) context.getAttribute("user");
 
         RequestDispatcher requestDispatcher;
 

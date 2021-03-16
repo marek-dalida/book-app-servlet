@@ -1,5 +1,8 @@
 package filters;
 
+import com.sun.net.httpserver.HttpContext;
+import models.User;
+
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
@@ -20,16 +23,19 @@ public class AuthFilter implements Filter {
         HttpServletResponse response = (HttpServletResponse) resp;
         String uri = request.getRequestURI();
 
+        ServletContext context = request.getServletContext();
 
         //will return current session if current session exists. If not, it will not create a new session.
         HttpSession session = request.getSession(false);
 
         this.context.log("Requested Resource::"+uri);
 
-        if( session == null && !(uri.endsWith("/zpt_1_war_exploded/"))){
+        User user = (User) context.getAttribute("user");
+
+        if( context.getAttribute("user") == null && !(uri.endsWith("/zpt_1_war_exploded/")) && !(uri.endsWith("/LoginServlet"))){
             this.context.log("Unauthorized access request");
             response.sendRedirect("login.html");
-        }else{
+        } else{
             // pass the request along the filter chain
             chain.doFilter(request, response);
         }

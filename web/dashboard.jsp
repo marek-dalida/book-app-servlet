@@ -8,7 +8,7 @@
 --%>
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<jsp:useBean id="user" class="models.User" scope="session"/>
+<jsp:useBean id="user" class="models.User" scope="application"/>
 <html>
 <head>
     <title>Dashboard</title>
