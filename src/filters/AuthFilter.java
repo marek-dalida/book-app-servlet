@@ -1,6 +1,7 @@
 package filters;
 
 import com.sun.net.httpserver.HttpContext;
+import models.Role;
 import models.User;
 
 import javax.servlet.*;
@@ -32,11 +33,15 @@ public class AuthFilter implements Filter {
 
         User user = (User) context.getAttribute("user");
 
-        if( context.getAttribute("user") == null && !(uri.endsWith("/zpt_1_war_exploded/")) && !(uri.endsWith("/LoginServlet"))){
+        if( user == null && !(uri.endsWith("/zpt_1_war_exploded/")) && !(uri.endsWith("/LoginServlet"))
+                && !(uri.endsWith("/login.html")) && !(uri.endsWith("/style.css"))){
             this.context.log("Unauthorized access request");
             response.sendRedirect("login.html");
-        } else{
-            // pass the request along the filter chain
+        } else if ( user != null && user.getRole().compareTo(Role.ADMIN) == 0 && uri.endsWith("/DashboardServlet")){
+            response.sendRedirect("login.html");
+        } else if ( user != null && user.getRole().compareTo(Role.USER) == 0 && uri.endsWith("/AdminServlet")){
+            response.sendRedirect("login.html");
+        } else {
             chain.doFilter(request, response);
         }
     }
