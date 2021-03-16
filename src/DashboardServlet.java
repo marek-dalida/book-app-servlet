@@ -38,9 +38,13 @@ public class DashboardServlet extends HttpServlet {
         response.setCharacterEncoding("utf-8");
         PrintWriter out = response.getWriter();
         ServletContext context = getServletContext();
+        ArrayList<Book> books = (ArrayList<Book>) context.getAttribute("books");
+        System.out.println(books.toString());
+        HttpSession session = request.getSession();
 
-        out.print("Dashboard");
 
-        out.close();
+        RequestDispatcher requestDispatcher;
+        requestDispatcher = request.getRequestDispatcher("dashboard.jsp");
+        requestDispatcher.forward(request, response);
     }
 }
