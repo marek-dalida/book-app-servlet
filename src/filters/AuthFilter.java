@@ -1,3 +1,5 @@
+package filters;
+
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
@@ -35,7 +37,7 @@ public class AuthFilter implements Filter {
 
     public void init(FilterConfig config) throws ServletException {
         this.context = config.getServletContext();
-        this.context.log("AuthFilter initialized");
+        this.context.log("filters.AuthFilter initialized");
     }
 
 }

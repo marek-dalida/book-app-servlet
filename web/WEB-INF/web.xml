@@ -12,12 +12,12 @@
     </servlet-mapping>
     <listener>
         <listener-class>
-            LibraryContextServletListener
+            listeners.LibraryContextServletListener
         </listener-class>
     </listener>
     <filter>
         <filter-name>AuthFilter</filter-name>
-        <filter-class>AuthFilter</filter-class>
+        <filter-class>filters.AuthFilter</filter-class>
     </filter>
     <filter-mapping>
         <filter-name>AuthFilter</filter-name>
