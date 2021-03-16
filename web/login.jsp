@@ -16,17 +16,17 @@
 <body>
 <div class="wrapper">
     <div class="loginPageStyle">
-            <h1 class="text-center">
+            <h1 class="text-center mb-2">
                 Biblioteka
             </h1>
         <form name="loginForm" method="post" action="LoginServlet">
             <div class="form-group">
                 <label for="username">Nazwa użytkownika</label>
-                <input type="text" class="form-control" name="username" id="username" placeholder="Podaj nazwe uzytkownika">
+                <input type="text" class="form-control" name="username" id="username" placeholder="Podaj nazwę użytkownika">
             </div>
             <div class="form-group">
-                <label for="password">Haslo</label>
-                <input type="password" class="form-control" id="password" name="password" placeholder="Haslo">
+                <label for="password">Hasło</label>
+                <input type="password" class="form-control" id="password" name="password" placeholder="Hasło">
             </div>
             <button type="submit" class="btn btn-secondary">Zaloguj</button>
         </form>

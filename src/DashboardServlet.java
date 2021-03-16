@@ -16,6 +16,7 @@ import java.util.ArrayList;
 public class DashboardServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html");
+        response.setCharacterEncoding("utf-8");
         PrintWriter out = response.getWriter();
         ServletContext context = getServletContext();
         ArrayList<Book> books = (ArrayList<Book>) context.getAttribute("books");

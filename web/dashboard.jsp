@@ -13,24 +13,34 @@
 <head>
     <title>Dashboard</title>
 </head>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 <body>
 <div>
-    <h1> Dashboard </h1>
+    <h1 class="h1 text-center"> Panel użytkownika </h1>
     <br/>
     <br/>
     Jestes zalogowany jako: ${user.login}
 
-    <c:forEach var = "i" begin = "1" end = "5">
-    Item <c:out value = "${i}"/><p>
-    </c:forEach>
-
-    <table>
-        <c:forEach items="${applicationScope.books}" var="book">
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Tytuł</th>
+            <th scope="col">Autor</th>
+            <th scope="col">Rok wydania</th>
+        </tr>
+        </thead>
+        <tbody>
+        <c:forEach items="${applicationScope.books.stream().filter(p ->  p.title.contains('5')).toArray()}" var="book">
             <tr>
-                <td>Title : <c:out value="${book.title}"/></td>
-                <td>Author : <c:out value="${book.author}"/></td>
+                <th scope="row">1</th>
+                <td><c:out value="${book.title}"/></td>
+                <td><c:out value="${book.author}"/></td>
+                <td><c:out value="${book.year}"/></td>
             </tr>
         </c:forEach>
+        </tbody>
     </table>
 </div>
 </body>

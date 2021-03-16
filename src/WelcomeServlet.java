@@ -19,8 +19,12 @@ public class WelcomeServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        response.setContentType("text/html");
+        response.setCharacterEncoding("utf-8");
+
         HttpSession session = request.getSession();
         ServletContext context = getServletContext();
+
 
         //Sprawdzenie czy użytkownik istnieje
         if(request.getParameter("user") == null){
