@@ -20,19 +20,13 @@
     <h1 class="h1 text-center"> Panel użytkownika </h1>
     <br/>
     <br/>
-    <div class="text-center h4">
+    <div class="text-center h4 mb-3">
         Jestes zalogowany jako: <b>${user.login}</b>
         <form name="logout" method="post" action="LogoutServlet">
-            <button type="submit" class=" mt-2 btn btn-secondary">Wyloguj</button>
+            <button type="submit" class=" mt-2 btn btn-primary">Wyloguj</button>
         </form>
     </div>
-    <form name="searchBooks" method="post" action="DashboardServlet">
-        <div class="form-group">
-            <label for="search">Wyszukaj</label>
-            <input type="text" class="form-control" name="search" id="search" placeholder="Szukaj">
-        </div>
-        <button type="submit" class="btn btn-secondary">Szukaj</button>
-    </form>
+
     <table class="table table-striped">
         <thead>
         <tr>
@@ -43,9 +37,9 @@
         </tr>
         </thead>
         <tbody>
-        <c:forEach items="${applicationScope.books.stream().filter(p ->  p.title.contains('5')).toArray()}" var="book">
+        <c:forEach items="${applicationScope.books}" var="book" varStatus="loop">
             <tr>
-                <th scope="row">1</th>
+                <td><c:out value="${loop.index+1}"/></td>
                 <td><c:out value="${book.title}"/></td>
                 <td><c:out value="${book.author}"/></td>
                 <td><c:out value="${book.year}"/></td>

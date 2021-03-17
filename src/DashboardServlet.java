@@ -15,19 +15,6 @@ import java.util.ArrayList;
 @WebServlet(name = "DashboardServlet", urlPatterns = "/DashboardServlet")
 public class DashboardServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        response.setContentType("text/html");
-        response.setCharacterEncoding("utf-8");
-        ServletContext context = getServletContext();
-
-        String search = request.getParameter("search");
-
-        System.out.println(search);
-
-        context.setAttribute("userSearch", search);
-
-        RequestDispatcher requestDispatcher;
-        requestDispatcher = request.getRequestDispatcher("dashboard.jsp");
-        requestDispatcher.forward(request, response);
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
