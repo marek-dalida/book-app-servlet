@@ -23,11 +23,12 @@
     <div class="text-center h4 mb-3">
         Jestes zalogowany jako: <b>${user.login}</b>
         <form name="logout" method="post" action="LogoutServlet">
-            <button type="submit" class=" mt-2 btn btn-secondary">Wyloguj</button>
+            <button type="submit" class=" mt-2 btn btn-primary">Wyloguj</button>
         </form>
     </div>
 
-    <form name="addBook" method="post" action="AdminServlet">
+    <form class="col-6 offset-3" name="addBook" method="post" action="AdminServlet">
+        <h4 class="text-center h4">Dodawanie książki</h4>
         <div class="form-group">
             <label for="title">Tytuł</label>
             <input type="text" class="form-control" name="title" id="title" placeholder="Podaj tytuł">
@@ -44,25 +45,35 @@
         </div>
         <button type="submit" class="btn btn-secondary">Dodaj</button>
     </form>
-
-    <table class=" col-10 table table-striped">
-        <thead>
-        <tr>
-            <th scope="col">Tytuł</th>
-            <th scope="col">Autor</th>
-            <th scope="col">Rok wydania</th>
-        </tr>
-        </thead>
-        <tbody>
-        <c:forEach items="${applicationScope.books}" var="book">
+    <div class="mt-5">
+        <table class=" table table-striped">
+            <thead>
             <tr>
-                <td><c:out value="${book.title}"/></td>
-                <td><c:out value="${book.author}"/></td>
-                <td><c:out value="${book.year}"/></td>
+                <th scope="col">#</th>
+                <th scope="col">Tytuł</th>
+                <th scope="col">Autor</th>
+                <th scope="col">Rok wydania</th>
+                <th scope="col">Usuń pozycje</th>
             </tr>
-        </c:forEach>
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+            <c:forEach items="${applicationScope.books}" var="book" varStatus="loop">
+                <tr>
+                    <td><c:out value="${loop.index+1}"/></td>
+                    <td><c:out value="${book.title}"/></td>
+                    <td><c:out value="${book.author}"/></td>
+                    <td><c:out value="${book.year}"/></td>
+                    <td>
+                        <form action="AdminServlet" method="post">
+                            <input type="hidden" name="index" value="${loop.index}"/>
+                            <button type="submit" class="btn btn-warning">Usun</button>
+                        </form>
+                    </td>
+                </tr>
+            </c:forEach>
+            </tbody>
+        </table>
+    </div>
 </div>
 </body>
 </html>

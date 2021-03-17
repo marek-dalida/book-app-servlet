@@ -15,27 +15,53 @@ import java.util.ArrayList;
 
 @WebServlet(name = "AdminServlet", urlPatterns = "/AdminServlet")
 public class AdminServlet extends HttpServlet {
+
+    @Override
+    protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        super.doDelete(req, resp);
+        resp.setContentType("text/html");
+        req.setCharacterEncoding("utf-8");
+        ServletContext context = getServletContext();
+
+        String index = req.getParameter("index");
+
+        System.out.println(index);
+
+    }
+
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html");
         response.setCharacterEncoding("utf-8");
         ServletContext context = getServletContext();
 
-        Book newBook;
+        if(request.getParameter("index") != null){
+            //delete
+            String index = request.getParameter("index");
+            int indexVal = Integer.parseInt(index);
 
-        String title = request.getParameter("title");
-        String author = request.getParameter("author");
-        String year = request.getParameter("year");
-        Integer yearVal = Integer.parseInt(year);
+            ArrayList<Book> books = (ArrayList<Book>) context.getAttribute("books");
+            books.remove(indexVal);
+            context.setAttribute("books", books);
 
-        System.out.println(title);
-        System.out.println(author);
-        System.out.println(year);
+        } else {
+            //add
+            Book newBook;
 
-        newBook = new Book(title, author, yearVal);
+            String title = request.getParameter("title");
+            String author = request.getParameter("author");
+            String year = request.getParameter("year");
+            Integer yearVal = Integer.parseInt(year);
 
-        ArrayList<Book> books = (ArrayList<Book>) context.getAttribute("books");
-        books.add(newBook);
-        context.setAttribute("books", books);
+            System.out.println(title);
+            System.out.println(author);
+            System.out.println(year);
+
+            newBook = new Book(title, author, yearVal);
+
+            ArrayList<Book> books = (ArrayList<Book>) context.getAttribute("books");
+            books.add(newBook);
+            context.setAttribute("books", books);
+        }
 
         RequestDispatcher requestDispatcher;
         requestDispatcher = request.getRequestDispatcher("admin.jsp");
