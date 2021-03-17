@@ -22,7 +22,9 @@
     <br/>
     <div class="text-center h4 mb-3">
         Jestes zalogowany jako: <b>${user.login}</b>
-        <a href="LogoutServlet">wyloguj</a>
+        <form name="logout" method="post" action="LogoutServlet">
+            <button type="submit" class=" mt-2 btn btn-secondary">Wyloguj</button>
+        </form>
     </div>
 
     <form name="addBook" method="post" action="AdminServlet">
