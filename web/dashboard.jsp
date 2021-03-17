@@ -24,7 +24,13 @@
         Jestes zalogowany jako: <b>${user.login}</b>
         <a href="LogoutServlet">wyloguj</a>
     </div>
-    <input >
+    <form name="searchBooks" method="post" action="DashboardServlet">
+        <div class="form-group">
+            <label for="search">Wyszukaj</label>
+            <input type="text" class="form-control" name="search" id="search" placeholder="Szukaj">
+        </div>
+        <button type="submit" class="btn btn-secondary">Szukaj</button>
+    </form>
     <table class="table table-striped">
         <thead>
         <tr>

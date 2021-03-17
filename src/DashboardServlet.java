@@ -17,20 +17,17 @@ public class DashboardServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html");
         response.setCharacterEncoding("utf-8");
-        PrintWriter out = response.getWriter();
         ServletContext context = getServletContext();
-        ArrayList<Book> books = (ArrayList<Book>) context.getAttribute("books");
-        System.out.println(books.toString());
-        HttpSession session = request.getSession();
 
+        String search = request.getParameter("search");
+
+        System.out.println(search);
+
+        context.setAttribute("userSearch", search);
 
         RequestDispatcher requestDispatcher;
         requestDispatcher = request.getRequestDispatcher("dashboard.jsp");
         requestDispatcher.forward(request, response);
-
-        out.print("Dashboard servlet");
-
-        out.close();
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
