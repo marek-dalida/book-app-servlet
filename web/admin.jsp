@@ -20,11 +20,30 @@
     <h1 class="h1 text-center"> Panel Administratora </h1>
     <br/>
     <br/>
-    <div class="text-center h4">
+    <div class="text-center h4 mb-3">
         Jestes zalogowany jako: <b>${user.login}</b>
         <a href="LogoutServlet">wyloguj</a>
     </div>
-    <table class="table table-striped">
+
+    <form name="addBook" method="post" action="AdminServlet">
+        <div class="form-group">
+            <label for="title">Tytuł</label>
+            <input type="text" class="form-control" name="title" id="title" placeholder="Podaj tytuł">
+        </div>
+
+        <div class="form-group">
+            <label for="author">Autor</label>
+            <input type="text" class="form-control" id="author" name="author" placeholder="Podaj autora">
+        </div>
+
+        <div class="form-group">
+            <label for="year">Rok wydania</label>
+            <input type="number" class="form-control" id="year" name="year" placeholder="Podaj rok wydania">
+        </div>
+        <button type="submit" class="btn btn-secondary">Dodaj</button>
+    </form>
+
+    <table class=" col-10 table table-striped">
         <thead>
         <tr>
             <th scope="col">Tytuł</th>
@@ -33,7 +52,7 @@
         </tr>
         </thead>
         <tbody>
-        <c:forEach items="${applicationScope.books.stream().filter(p ->  p.title.contains('5')).toArray()}" var="book">
+        <c:forEach items="${applicationScope.books}" var="book">
             <tr>
                 <td><c:out value="${book.title}"/></td>
                 <td><c:out value="${book.author}"/></td>

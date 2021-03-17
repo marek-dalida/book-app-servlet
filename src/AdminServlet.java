@@ -1,4 +1,5 @@
 import models.Book;
+import models.User;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
@@ -17,9 +18,29 @@ public class AdminServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html");
         response.setCharacterEncoding("utf-8");
-        PrintWriter out = response.getWriter();
-        out.print("Admin servlet");
-        out.close();
+        ServletContext context = getServletContext();
+
+        Book newBook;
+
+        String title = request.getParameter("title");
+        String author = request.getParameter("author");
+        String year = request.getParameter("year");
+        Integer yearVal = Integer.parseInt(year);
+
+        System.out.println(title);
+        System.out.println(author);
+        System.out.println(year);
+
+        newBook = new Book(title, author, yearVal);
+
+        ArrayList<Book> books = (ArrayList<Book>) context.getAttribute("books");
+        books.add(newBook);
+        context.setAttribute("books", books);
+
+        RequestDispatcher requestDispatcher;
+        requestDispatcher = request.getRequestDispatcher("admin.jsp");
+        requestDispatcher.forward(request, response);
+
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
